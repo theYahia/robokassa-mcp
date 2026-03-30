@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "robokassa": {
+      "command": "npx",
+      "args": ["-y", "@theyahia/robokassa-mcp"],
+      "env": {
+        "ROBOKASSA_LOGIN": "<YOUR_MERCHANT_LOGIN>",
+        "ROBOKASSA_PASSWORD1": "<YOUR_PASSWORD1>",
+        "ROBOKASSA_PASSWORD2": "<YOUR_PASSWORD2>",
+        "ROBOKASSA_TEST": "true"
+      }
+    }
+  }
+}
