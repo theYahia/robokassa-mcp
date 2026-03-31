@@ -1,0 +1,30 @@
+name: robokassa-mcp
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      ROBOKASSA_LOGIN:
+        type: string
+        description: Merchant login from Robokassa dashboard
+      ROBOKASSA_PASSWORD1:
+        type: string
+        description: Password 1 for payment signature
+      ROBOKASSA_PASSWORD2:
+        type: string
+        description: Password 2 for status check signature
+      ROBOKASSA_TEST:
+        type: string
+        description: Set to "true" for test mode
+    required: [ROBOKASSA_LOGIN, ROBOKASSA_PASSWORD1, ROBOKASSA_PASSWORD2]
+  commandFunction: |
+    (config) => ({
+      command: "npx",
+      args: ["-y", "@theyahia/robokassa-mcp"],
+      env: {
+        ROBOKASSA_LOGIN: config.ROBOKASSA_LOGIN,
+        ROBOKASSA_PASSWORD1: config.ROBOKASSA_PASSWORD1,
+        ROBOKASSA_PASSWORD2: config.ROBOKASSA_PASSWORD2,
+        ...(config.ROBOKASSA_TEST ? { ROBOKASSA_TEST: config.ROBOKASSA_TEST } : {}),
+      },
+    })
